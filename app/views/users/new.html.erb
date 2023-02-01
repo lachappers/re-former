@@ -1,0 +1,51 @@
+<h1>Register</h1>
+
+<%if false%>
+    <form accept-charset="UT-8" action="/users" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <div>
+        <label for="username">Username</label><br>
+        <input type="text" id="username" name="user[username]">
+      </div>
+      <div>
+        <label for="email">Email Address</label><br>
+        <input type="email" id="email" name="user[email]">
+      </div>
+      <div>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="user[password]">
+      </div>
+      <div>
+        <input type="submit" value="Register">
+      </div>
+    </form>
+<% end %>
+
+<%if false%>
+    <%= form_tag ('/users') do %>
+      <label> First name</label>
+      <%= text_field_tag ':user[first_name]' %>
+        
+        <label>Last Name:</label>
+      <%= text_field_tag ':user[last_name]' %>
+        
+        <label>Password</label>
+      <%= text_field_tag ':user[password]' %>
+      
+      <%= submit_tag "Create User" %>
+    <% end %>
+<% end %>
+
+<%= form_with model: @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit %>
+
+<% end %>
