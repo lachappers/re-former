@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authorized, only: [:show]
-  before_action :set_user, only: %i[ edit update destroy ]
   
+  before_action :set_user, only: %i[ edit update destroy ]
+  before_action :authorized, only: [:show]
   # before_action :set_user, only: %i[ edit update destroy]
   
   # before_action :ensure_current_user
