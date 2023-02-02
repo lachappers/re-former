@@ -1,0 +1,24 @@
+
+
+<p style="color: green"><%= notice %></p>
+
+
+
+  <div>
+    <p>Welcome <%= @user.username %>!</p>
+  </div>
+
+  <div>
+    <%= link_to "Edit this user", edit_user_path(@user) %> |
+    <%= link_to "Back to users", users_path %>
+
+  </div>
+
+<% if false %>
+  <% else %>
+    <div>
+    <%= link_to "Create new user", new_user_path(@user) %>
+
+  </div>
+
+<% end %>

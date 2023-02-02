@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <p style="color: green"><%= notice %></p>
+      <% if current_user %>
+      Hi <%= current_user.username %>
+      <%= link_to "Edit this user", edit_user_path(@user) %>
+      <% end %>
     <%= yield %>
   </body>
 </html>

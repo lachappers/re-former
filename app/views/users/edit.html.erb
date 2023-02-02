@@ -1,0 +1,26 @@
+<h1>Edit user</h1>
+
+<p style="color: green"><%= notice %></p>
+
+
+<%= form_with model: @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit %>
+
+<% end %>
+
+
+<br>
+
+<div>
+  <%= link_to "Show this user", @user %> |
+  <%= link_to "Back to user", users_path %>
+</div>
