@@ -1,0 +1,22 @@
+<h1>Sign in</h1>
+
+
+<div>
+  <%= form_with scope: :user, url: sessions_path do |f| %>
+    <%= f.label :username %> <br>
+    <%= f.text_field :username %> <br>
+
+    <%= f.label :password %> <br>
+    <%= f.password_field :password %> <br>
+    <br>
+
+    <%= f.submit "Sign In" %>
+
+
+  <% end %>
+
+</div>
+<p id='notice' style="color: green"><%= notice %></p>
+<br><br>
+<p>Not signed up yet?</p>
+<%= button_to "Register", register_path, method: :get %>

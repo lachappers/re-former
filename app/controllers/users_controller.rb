@@ -1,9 +1,20 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ edit update destroy]
+  before_action :authorized, only: [:show]
+  before_action :set_user, only: %i[ edit update destroy ]
+  
+  # before_action :set_user, only: %i[ edit update destroy]
+  
   # before_action :ensure_current_user
   
   def index
     @users = User.all
+    # @user = current_user
+  end
+
+
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def new
@@ -16,11 +27,13 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = "User created"
-      redirect_to 
+      session[:user_id] = @user.id
+      redirect_to @user
     else
       flash.now[:notice] = @user.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
     end
+
   end
 
     # @user = User.new(user_params)
@@ -33,23 +46,25 @@ class UsersController < ApplicationController
     # end
 
     def edit
-
-    end
-
-    def show
       @user = User.find(params[:id])
     end
 
     def update
-      respond_to do |format|
+      @user = User.find(params[:id])
+      # respond_to do |format|
         if @user.update(user_params)
-          format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-          format.json { render :show, status: :ok, location: @user }
+          flash[:success] = "User updated"
+          redirect_to user_url(@user)
+          # format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
+          # format.json { render :show, status: :ok, location: @user }
         else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
+          flash.now[:notice] = @user.errors.full_messages.to_sentence
+          render :edit, status: :unprocessable_entity
+          # format.html { render :edit, status: :unprocessable_entity }
+          # format.json { render json: @user.errors, status: :unprocessable_entity }
         end
-      end
+      # end
+
     end
 
 
@@ -61,6 +76,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
 end

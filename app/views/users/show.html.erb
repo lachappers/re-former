@@ -2,15 +2,17 @@
 
 <p style="color: green"><%= notice %></p>
 
-
+  <p>Hi <%= current_user.username %> </p>
+    <%= link_to "Sign out", sign_out_path %>
 
   <div>
-    <p>Welcome <%= @user.username %>!</p>
+    <p>Welcome to the page of <%= @user.username %>!</p>
   </div>
 
   <div>
     <%= link_to "Edit this user", edit_user_path(@user) %> |
     <%= link_to "Back to users", users_path %>
+
 
   </div>
 
